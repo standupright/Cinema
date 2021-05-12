@@ -95,6 +95,8 @@ ul {
   overflow: hidden;
   position: relative;
   height: 100px;
+  width: 100%;
+  white-space: nowrap;
 }
 
 .nav {
@@ -102,7 +104,6 @@ ul {
   position: absolute;
   top: 0;
   left: 40px;
-  width: 200%;
 }
 
 .nav__item {
@@ -150,6 +151,7 @@ ul {
   overflow: hidden;
   height: 340px;
   position: relative;
+  white-space: nowrap;
 }
 
 .preview__list {
