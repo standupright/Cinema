@@ -261,6 +261,7 @@ const onKeyUpHandler = function () {
 
   if (slider.focused) {
     document.querySelector(".nav__link--current").focus();
+    changeDefalutBackground();
   }
 
   counterSlide = 0;
@@ -272,10 +273,12 @@ const onKeyDownHandler = function () {
     var slideItem = document.querySelector(".slider__item--current")
     .querySelector(".preview__link");
     slideItem.focus();
-  //  changeBackground(slideItem)
+
+    //Смена бекграунда
+    changeBackground(slideItem)
   }
   if (additionalMenu.focused) {
-    navMenuLink.focus();
+    document.querySelector(".nav__link--current").focus();
   }
 }
 
@@ -312,6 +315,8 @@ const onKeyLeftHanlder = function () {
       if (slideItems[i].classList.contains("preview__link--current") && i > 0) {
         slideItems[i-1].focus();
 
+        //Смена бекграунда
+        changeBackground(slideItems[i-1]);
 
         // Сдвиг
         var previewListCurrent = document.querySelector(".slider__item--current")
@@ -356,6 +361,10 @@ const onKeyRightHanlder = function () {
     for (var i=0; i < slideItems.length; i++){
       if (slideItems[i].classList.contains("preview__link--current") && i < slideItems.length-1) {
         slideItems[i+1].focus();
+
+        //Смена бекграунда
+        changeBackground(slideItems[i+1]);
+
          // Сдвиг
          var previewListCurrent = document.querySelector(".slider__item--current")
          .querySelector(".preview__list");
@@ -367,12 +376,46 @@ const onKeyRightHanlder = function () {
   }
 }
 
-// Функция замены фоновой картинки на размытый бекграунд
-// const wrapper = document.querySelector(".wrapper");
 
-// const changeBackground = function (item) {
-//   wrapper.style.backgroundImage = "url('+" + item.src + "')" ;
-// }
+
+// Функция замены фоновой картинки на размытый бекграунд
+const wrapper = document.querySelector(".wrapper");
+
+// Объект для хранения ссылок на бекграунды
+const SrcBacgrounds = {
+  default: "img/default-bg.png",
+  shutterIsland: "img/bg-shutter-island.png",
+  silenceLambs: "img/bg-the-silence.png",
+  divergent: "img/bg-divergent.png",
+  hungryGames: "img/bg-hungry-games.png",
+  gameOfThrones: "img/bg-game-thrones.png",
+  hellboy: "img/bg-hellboy.png",
+  inception: "img/bg-inception.png",
+  brother: "img/bg-brother.png",
+  avatar: "img/bg-avatar.png",
+  nuPogodi: "img/bg-nu-pogodi.png",
+  zootopia: "img/bg-zootopia.png",
+  lionKing: "img/bg-lion-king.png",
+  intouchables: "img/bg-intouchable.png",
+  gentlemen: "img/bg-gentelmens.png",
+  operationShurick: "img/bg-operation-shurck.png",
+  titanic: "img/bg-titanic.png",
+  moscowCry: "img/bg-moscow-never-cry.png",
+  eternalSunshine: "img/bg-eternal-sunshine.png",
+  harry: "img/bg-harry.png",
+  brilliant: "img/bg-brilliant.png",
+  lordRings: "img/bg-lord-of-the-rings.png",
+}
+
+const changeBackground = function (item) {  
+  var srcBacground = SrcBacgrounds[item.id];
+  wrapper.style.backgroundImage = "url('" + srcBacground +"')" ;
+}
+
+const changeDefalutBackground = function () {
+  var srcBacground = SrcBacgrounds['default'];
+  wrapper.style.backgroundImage = "url('" + srcBacground +"')" ;
+}
 
 
 
