@@ -221,7 +221,7 @@ const navLeftMove = function () {
 const additionalMenuLeftMove = function () {
   if (additionalMenu.focused) {
     for (var i = 0; i < additionalMenuList.length; i++) {
-      var currentItem = additionalMenuList[i].classList.contains("nav__link--current");
+      var currentItem = additionalMenuList[i].classList.contains("additional-menu__link--current");
       if (currentItem && i > 0) {
         additionalMenuList[i - 1].focus();
         break;
@@ -280,7 +280,7 @@ const navMenuRightMove = function () {
 const additionalMenuRightMove = function () {
   if (additionalMenu.focused) {
     for (var i = 0; i < additionalMenuList.length; i++) {
-      if (additionalMenuList[i].classList.contains("additional-menu__link--current") && i < navLinksList.length - 1) {
+      if (additionalMenuList[i].classList.contains("additional-menu__link--current") && i < additionalMenuList.length - 1) {
         additionalMenuList[i + 1].focus();
         break;
       }
