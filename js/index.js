@@ -10,12 +10,20 @@ const navLinksList = document.querySelectorAll(".nav__link");
 const sliderItems = document.querySelectorAll(".slider__item");
 
 // Общая навигация
-const navigateItems = function (navItem, navList, navCurrentClass, slideItem, slideList, sliderCurrentClass, ) {
-  navItem.addEventListener("focus", function () {
-    for (var i = 0; i < navList.length; i++) {
+const removeCurrentClasses = function (navList, slideList, navCurrentClass, sliderCurrentClass) {
+  for (var i = 0; i < navList.length; i++) {
+    let currentClass = navList[i].classList.contains(navCurrentClass);
+    if (currentClass) {
       navList[i].classList.remove(navCurrentClass);
       if (slideList[i]) slideList[i].classList.remove(sliderCurrentClass);
-    }    
+      break;
+    }     
+  }   
+}
+
+const navigateItems = function (navItem, navList, navCurrentClass, slideItem, slideList, sliderCurrentClass, ) {
+  navItem.addEventListener("focus", function () {
+    removeCurrentClasses(navList, slideList,navCurrentClass,sliderCurrentClass);
     navItem.classList.add(navCurrentClass);
     if (slideItem) slideItem.classList.add(sliderCurrentClass);
   });
@@ -96,6 +104,10 @@ const nav = document.querySelector(".nav ");
 const additionalMenu = document.querySelector(".additional-menu");
 const slider = document.querySelector(".slider");
 
+const removeQueryClass = function (queryClass) {
+  document.getElementsByClassName(queryClass).classList.remove(queryClass);
+}
+
 nav.addEventListener("focusin", function () {
   nav.classList.remove('js-nofocus');
   // Флаг состояния фокуса
@@ -114,8 +126,7 @@ slider.addEventListener("focusin", function () {
 })
 
 slider.addEventListener("focusout", function () {
-  document.querySelector(".preview__link--current")
-    .classList.remove("preview__link--current");
+  removeQueryClass("preview__link--current")
   // Флаг состояния фокуса
   slider.focused = false;
 })
@@ -127,8 +138,7 @@ additionalMenu.addEventListener("focusin", function () {
 })
 
 additionalMenu.addEventListener("focusout", function () {
-  document.querySelector(".additional-menu__link--current")
-    .classList.remove("additional-menu__link--current")
+  removeQueryClass("additional-menu__link--current");
   additionalMenu.classList.add('js-nofocus');
   // Флаг состояния фокуса
   additionalMenu.focused = false;
